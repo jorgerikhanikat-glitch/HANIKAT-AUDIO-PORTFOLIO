@@ -11,7 +11,7 @@
             --card-bg: #1a1a1a;
             --text-main: #e0e0e0;
             --text-muted: #a0a0a0;
-            --accent: #d4af37; /* Muted Gold for a premium feel, change to whatever you like */
+            --accent: #d4af37; /* Muted Gold for a premium feel */
             --accent-hover: #f3ce5e;
             --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
@@ -218,7 +218,7 @@
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
-            .nav-links { display: none; /* In a real build, we'd add a hamburger menu */ }
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -250,106 +250,183 @@
 
             <div class="portfolio-grid">
                 
-                <!-- Spotify -->
+                <!-- Card 1 -->
                 <div class="project-card">
                     <div class="embed-container">
-                        <!-- Replace src with your Spotify Embed Link -->
+						<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/09Zd2edvykjoOwkL8ETK4y?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                    <div class="card-info">
+                        <h3>Geko - "Ära Jahtu"</h3>
+                        <p>Mixed / Mastered</p>
+                        <p>Jörg-Erik Hanikat</p>
+                    </div>
+                </div>
+				
+				<!-- Card 2 -->
+                <div class="project-card">
+                    <div class="embed-container">
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/67s2ezmWmmmPAoxteKergR?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                    <div class="card-info">
+                        <h3>Rainer Ild - "ginger goes black"</h3>
+                        <p>Mixed</p>
+                        <p>Martin Randalu</p>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="project-card">
+                    <div class="embed-container">
                         <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/3nj9cRRWUHQddwl0ZCn3ri?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
                     <div class="card-info">
                         <h3>bloodfeather - "Closer Enemy"</h3>
-						<p>Recorded / Produced / Mixed</p>
-						<p>Jörg-Erik Hanikat</p>
+                        <p>Recorded / Produced / Mixed</p>
+                        <p>Jörg-Erik Hanikat</p>
                     </div>
                 </div>
-				
+                
+                <!-- Card 4 -->
                 <div class="project-card">
                     <div class="embed-container">
-                        <!-- Replace src with your Spotify Embed Link -->
                         <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/3EyPQypQd1HoScl517wyvC?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
                     <div class="card-info">
                         <h3>Leaf This Planet - "Can You Hear Me?"</h3>
                         <p>Recorded / Produced / Mixed / Mastered</p>
-						<p>Jörg-Erik Hanikat</p>
+                        <p>Jörg-Erik Hanikat</p>
                     </div>
                 </div>
-				
-				<div class="project-card">
+                
+                <!-- Card 5 -->
+                <div class="project-card">
                     <div class="embed-container">
-                        <!-- Replace src with your Spotify Embed Link -->
                         <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/5uWnzCZSpaS0KqFpp6Nbjz?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
                     <div class="card-info">
                         <h3>Lenna - "Maailmalõpu eel"</h3>
                         <p>Mastered</p>
-						<p>Martin Randalu</p>
+                        <p>Martin Randalu</p>
                     </div>
                 </div>
 
-				<div class="project-card">
+                <!-- Card 6 -->
+                <div class="project-card">
                     <div class="embed-container">
                         <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/3bvQmVs1WeeMq5bwCugZnL?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
                     <div class="card-info">
                         <h3>Horror Dance Squad - "Take Aim & Fire"</h3>
                         <p>Mixed</p>
-						<p>Martin Randalu</p>
+                        <p>Martin Randalu</p>
                     </div>
                 </div>
-				
-				<div class="project-card">
+                
+                <!-- Card 7 -->
+                <div class="project-card">
                     <div class="embed-container">
-						<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/3o04n5EbGnWpdJlcb03ap2?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-					</div>
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/3o04n5EbGnWpdJlcb03ap2?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
                     <div class="card-info">
                         <h3>Ketaspidur, Liv - "Tragöödia"</h3>
                         <p>Mastered</p>
-						<p>Martin Randalu</p>
+                        <p>Martin Randalu</p>
                     </div>
                 </div>
-				
-				<div class="project-card">
+                
+                <!-- Card 8 -->
+                <div class="project-card">
                     <div class="embed-container">
-						<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/2eYNfzBPp0ahVYHMNiP9yK?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/2eYNfzBPp0ahVYHMNiP9yK?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
                     <div class="card-info">
                         <h3>Goresoerd - "Maokaev"</h3>
                         <p>Mixed</p>
-						<p>Jörg-Erik Hanikat</p>
+                        <p>Jörg-Erik Hanikat</p>
                     </div>
                 </div>
-				
-				<div class="project-card">
+                
+                <!-- Card 9 -->
+                <div class="project-card">
                     <div class="embed-container">
-						<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/4NyOCGz9E3sru0YshzAikj?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/4NyOCGz9E3sru0YshzAikj?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
                     <div class="card-info">
                         <h3>Fööniks - "Metsik"</h3>
                         <p>Mixed / Mastered</p>
-						<p>Martin Randalu</p>
+                        <p>Martin Randalu</p>
                     </div>
                 </div>
-				
-				<div class="project-card">
+                
+                <!-- Card 10 -->
+                <div class="project-card">
                     <div class="embed-container">
-						<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/6uZJGCqNAaIhfBmxH3Wus0?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/6uZJGCqNAaIhfBmxH3Wus0?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
                     <div class="card-info">
                         <h3>Pizzafacial - "DJ Disco Disaster"</h3>
                         <p>Mixed / Mastered</p>
-						<p>Jörg-Erik Hanikat</p>
+                        <p>Jörg-Erik Hanikat</p>
                     </div>
                 </div>
-				
-				<div class="project-card">
+                
+                <!-- Card 11 -->
+                <div class="project-card">
                     <div class="embed-container">
-						<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/1yyuZv1L3tmi1QeEL4CBAR?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/1yyuZv1L3tmi1QeEL4CBAR?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
                     </div>
                     <div class="card-info">
                         <h3>Pridian - "Hive Mind"</h3>
                         <p>Recorded / Produced/ Mixed</p>
-						<p>Jörg-Erik Hanikat</p>
+                        <p>Jörg-Erik Hanikat</p>
+                    </div>
+                </div>
+                
+                <!-- Card 12 -->
+                <div class="project-card">
+                    <div class="embed-container">
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/1UzSiTbiX3Yryk2IPLXdb2?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>                    
+                    </div>
+                    <div class="card-info">
+                        <h3>Tanel Padar - "Mustad purjed"</h3>
+                        <p>Mixed / Mastered</p>
+                        <p>Martin Randalu</p>
+                    </div>
+                </div>
+				
+				<!-- Card 13 -->
+                <div class="project-card">
+                    <div class="embed-container">
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/3yRT9HfAZG7knZ77TnuCqO?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                    <div class="card-info">
+                        <h3>Ocean Districts - "Fata Morgana"</h3>
+                        <p>Mastered</p>
+                        <p>Martin Randalu</p>
+                    </div>
+                </div>
+				
+				<!-- Card 14 -->
+                <div class="project-card">
+                    <div class="embed-container">
+						<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/6yT7V6FwLbNMRE2mPGWNk5?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                    <div class="card-info">
+                        <h3>bloodfeather, 6un - "Ashes"</h3>
+                        <p>Recorded / Produced / Mixed / Mastered</p>
+                        <p>Jörg-Erik Hanikat</p>
+                    </div>
+                </div>
+                
+                <!-- Card 15 -->
+                <div class="project-card">
+                    <div class="embed-container">
+					<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/5WfB3dyYAIYxLg6madf8UG?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                    <div class="card-info">
+                        <h3>Trevor - "Must Jää"</h3>
+                        <p>Recorded / Produced / Mixed / Mastered</p>
+                        <p>Jörg-Erik Hanikat</p>
                     </div>
                 </div>
 
@@ -369,11 +446,15 @@
                 </div>
                 <div class="service-card">
                     <h3>Mastering</h3>
-                    <p>The final polish. We optimize loudness and frequency balance to ensure your tracks translate perfectly across all streaming platforms.</p>
+                    <p>The final polish. We optimize loudness and frequency balance to ensure your tracks translate perfectly across all streaming platforms and physical media.</p>
                 </div>
-                <div class="service-card">
+				<div class="service-card">
                     <h3>Post Production</h3>
                     <p>Audio repair, dialogue editing, and sound design for video, podcasts, and film projects.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Ghost Writing</h3>
+                    <p>Professional composition and lyrical assistance tailored to your artistic vision. From melodic hooks to full arrangements, we help articulate your musical identity while remaining completely behind the scenes.</p>
                 </div>
             </div>
         </div>
@@ -384,19 +465,12 @@
         <div class="container">
             <div class="section-title"><span>Get in touch</span></div>
             <div class="contact-wrapper">
-                
-                <!-- FORM CONFIGURATION: 
-                     1. Go to https://formspree.io/
-                     2. Create a free account and a new form.
-                     3. Paste your Form ID in the action URL below where it says YOUR_FORM_ID
-                -->
                 <form action="https://formspree.io/f/xpwvrndn" method="POST">
                     <input type="text" name="name" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Your Email" required>
                     <textarea name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
                     <button type="submit">Send Message</button>
                 </form>
-
             </div>
         </div>
     </section>
