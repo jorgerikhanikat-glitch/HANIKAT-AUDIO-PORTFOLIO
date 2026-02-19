@@ -25,160 +25,283 @@
 
         html { scroll-behavior: smooth; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--dim); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
         body { background-color: var(--bg); color: var(--text); font-family: var(--font-tech); line-height: 1.5; overflow-x: hidden; }
 
         /* SIDEBAR */
         .sidebar {
             position: fixed; top: 0; left: 0; width: var(--sidebar-width); height: 100vh;
             background: var(--bg); border-right: 1px solid var(--line);
-            padding: 40px; display: flex; flex-direction: column; justify-content: space-between; z-index: 1000;
+            padding: 40px; display: flex; flex-direction: column; justify-content: space-between; z-index: 1000; overflow-y: auto;
         }
 
-        /* FIXED BRAND STYLING */
         .brand { 
-            font-family: var(--font-head); 
-            font-weight: 700; 
-            font-size: 1.8rem; 
-            letter-spacing: -1px; 
-            line-height: 1;
-            text-decoration: none !important; /* Removes underline */
-            color: var(--text) !important;    /* Forces white/grey color */
-            display: block;
+            font-family: var(--font-head); font-weight: 700; font-size: 1.8rem; 
+            letter-spacing: -1px; line-height: 1; display: block; margin-bottom: 5px;
+            text-decoration: none; color: var(--text);
         }
-        .brand:visited { color: var(--text) !important; } /* Prevents purple color */
 
-        .nav-menu ul { list-style: none; display: flex; flex-direction: column; gap: 20px; margin-top: 40px; }
-        .nav-menu a { text-decoration: none; color: inherit; font-weight: 700; text-transform: uppercase; font-size: 1.1rem; transition: 0.3s; }
-        .nav-menu a:hover { color: var(--accent); }
+        .status-dot { display: inline-block; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); animation: pulse 2s infinite; margin-left: 5px; }
+
+        .nav-menu ul { list-style: none; display: flex; flex-direction: column; gap: 20px; }
+        .nav-menu a { text-decoration: none; color: inherit; font-weight: 700; text-transform: uppercase; font-size: 1.1rem; transition: 0.3s; position: relative; display: block;}
+        .nav-menu a:hover { color: var(--accent); transform: translateX(10px); }
+        .nav-menu a::before { content: '//'; position: absolute; left: -20px; opacity: 0; color: var(--accent); transition: 0.3s; }
+        .nav-menu a:hover::before { opacity: 1; left: -25px; }
+
+        .sidebar-footer { font-size: 0.65rem; color: var(--dim); border-top: 1px solid var(--line); padding-top: 20px; }
 
         /* MAIN CONTENT */
         .main-view { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); min-height: 100vh; }
 
         /* HERO */
-        .hero { height: 80vh; border-bottom: 1px solid var(--line); position: relative; display: flex; align-items: flex-end; padding: 60px; overflow: hidden; background: #000; }
-        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://images.pexels.com/photos/4988141/pexels-photo-4988141.jpeg?auto=compress&cs=tinysrgb&w=1280') no-repeat center center; background-size: cover; filter: grayscale(100%) brightness(0.4); z-index: 0; }
-        .hero h1 { font-family: var(--font-head); font-size: 6vw; text-transform: uppercase; color: white; z-index: 2; mix-blend-mode: exclusion; position: relative; }
+        .hero { height: 90vh; border-bottom: 1px solid var(--line); position: relative; display: flex; align-items: flex-end; padding: 60px; overflow: hidden; background: #000; }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://images.pexels.com/photos/4988141/pexels-photo-4988141.jpeg?auto=compress&cs=tinysrgb&w=1920') no-repeat center center; background-size: cover; filter: grayscale(100%) contrast(110%) brightness(0.4); z-index: 0; }
+        .hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(5,5,5,0) 0%, rgba(5,5,5,1) 100%), repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 100px); pointer-events: none; z-index: 1; }
+        .hero h1 { font-family: var(--font-head); font-size: 6vw; line-height: 0.9; text-transform: uppercase; color: white; z-index: 2; mix-blend-mode: exclusion; position: relative; }
 
-        /* GRID */
-        .section-header { padding: 40px 60px; border-bottom: 1px solid var(--line); background: var(--surface); position: sticky; top: 0; z-index: 50; }
+        /* GRID & CARDS */
+        .section-header { padding: 40px 60px; border-bottom: 1px solid var(--line); background: var(--surface); position: sticky; top: 0; z-index: 50; display: flex; justify-content: space-between; align-items: center; }
         .label { font-family: var(--font-head); font-size: 1.2rem; color: var(--accent); letter-spacing: 2px; }
-        .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background-color: var(--line); }
-        .portfolio-card { background: var(--bg); padding: 25px; display: flex; flex-direction: column; gap: 10px; min-height: 250px; }
         
-        .spotify-container { width: 100%; min-height: 152px; background: #000; border-radius: 12px; }
-        #albums .spotify-container { min-height: 352px; }
+        .portfolio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background-color: var(--line); border-bottom: 1px solid var(--line); }
+        .portfolio-card { background: var(--bg); padding: 25px; display: flex; flex-direction: column; gap: 10px; transition: 0.3s; }
+        .portfolio-card:hover { background: #0e0e0e; }
         
-        .role-badge { color: var(--accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; border-left: 2px solid var(--accent); padding-left: 10px; }
+        /* Spotify Containers (Lazy Load Placeholders) */
+        .spotify-container { width: 100%; min-height: 160px; background: #000; border-radius: 0; overflow: hidden; }
+        #albums .spotify-container { min-height: 380px; }
+        
+        .role-badge { color: var(--accent); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; border-left: 2px solid var(--accent); padding-left: 10px; letter-spacing: 1px; line-height: 1; }
+
+        /* SERVICES */
+        .services-grid { display: grid; grid-template-columns: 1fr 1fr; }
+        .service-cell { border-bottom: 1px solid var(--line); border-right: 1px solid var(--line); padding: 80px 60px; transition: 0.3s; position: relative; }
+        .service-cell:nth-child(even) { border-right: none; }
+        .service-cell:hover { background: var(--surface); }
+        .service-cell::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 3px; background: var(--accent); transition: 0.3s; }
+        .service-cell:hover::before { width: 100%; }
+        .service-num { font-family: var(--font-head); font-size: 4rem; color: var(--text); opacity: 0.15; margin-bottom: 20px; position: absolute; top: 40px; right: 40px; }
+        .service-cell h3 { font-size: 1.8rem; text-transform: uppercase; margin-bottom: 20px; color: var(--text); }
+        .service-cell p { color: var(--dim); font-size: 0.95rem; line-height: 1.6; max-width: 90%; }
+
+        /* CONTACT */
+        .contact-area { padding: 100px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; background-color: var(--surface); }
+        .form-box input, .form-box textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--line); padding: 20px 0; color: var(--accent); font-family: var(--font-tech); font-size: 1.1rem; margin-bottom: 30px; transition: 0.3s; text-transform: uppercase; }
+        .form-box ::placeholder { color: var(--dim); opacity: 1; }
+        .form-box input:focus, .form-box textarea:focus { outline: none; border-bottom-color: var(--accent); background: rgba(204, 255, 0, 0.02); padding-left: 10px; }
+        .submit-btn { background: transparent; border: 1px solid var(--accent); color: var(--accent); padding: 20px 50px; font-family: var(--font-head); font-size: 1rem; cursor: pointer; text-transform: uppercase; transition: 0.3s; width: 100%; letter-spacing: 2px; }
+        .submit-btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 30px rgba(204, 255, 0, 0.2); }
 
         @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        .status-dot { display: inline-block; width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 10px var(--accent); animation: pulse 2s infinite; }
 
         @media (max-width: 900px) {
-            .sidebar { position: relative; width: 100%; height: auto; padding: 25px; border-right: none; border-bottom: 1px solid var(--line); }
-            .nav-menu { display: none; }
+            .sidebar { position: relative; width: 100%; height: auto; padding: 25px; border-right: none; border-bottom: 1px solid var(--line); flex-direction: row; align-items: center; flex-wrap: wrap; }
+            .nav-menu, .sidebar-footer { display: none; }
+            .brand-block { flex-grow: 1; }
+            .status-dot { margin-left: 0; }
             .main-view { margin-left: 0; width: 100%; }
-            .portfolio-grid { grid-template-columns: 1fr; }
+            .hero { padding: 30px; height: 50vh; }
+            .hero h1 { font-size: 8vw; }
+            .section-header { padding: 25px; font-size: 0.9rem; }
+            .portfolio-grid, .services-grid, .contact-area { grid-template-columns: 1fr; }
+            .service-cell { border-right: none; padding: 50px 30px; }
+            .service-num { font-size: 3rem; top: 30px; right: 30px; }
+            .contact-area { padding: 50px 30px; gap: 30px; }
         }
     </style>
 </head>
 <body>
 
 <aside class="sidebar">
-    <!-- Clean Brand Block -->
     <div class="brand-block">
         <a href="." class="brand">HANIKAT<br>AUDIO</a>
     </div>
     <span class="status-dot"></span>
+
     <nav class="nav-menu">
         <ul>
             <li><a href="#work">LATEST WORK</a></li>
             <li><a href="#albums">ALBUMS</a></li>
+            <li><a href="#services">SERVICES</a></li>
+            <li><a href="#contact">LET'S TALK</a></li>
         </ul>
     </nav>
+
+    <div class="sidebar-footer">
+        &copy; 2026 HANIKAT AUDIO
+    </div>
 </aside>
 
 <main class="main-view">
     <section class="hero">
         <div class="hero-bg"></div>
-        <h1>Sonic Precision.</h1>
+        <h1>
+            Sonic<br>
+            <span>Precision.</span>
+        </h1>
     </section>
 
     <section id="work">
-        <div class="section-header"><span class="label">LATEST WORK</span></div>
+        <div class="section-header">
+            <span class="label">LATEST WORK</span>
+            <span style="color:var(--dim); font-size: 0.8rem;">//</span>
+        </div>
         <div class="portfolio-grid">
-             <!-- Card 12 (Original 01 Reversed) -->
-             <div class="portfolio-card">
-                <div class="role-badge">MIXED</div>
-                <div class="spotify-container" data-uri="spotify:track:2eYNfzBPp0ahVYHMNiP9yK"></div>
-            </div>
-             <!-- Card 11 (Original 02 Reversed) -->
-             <div class="portfolio-card">
-                <div class="role-badge">REC / PROD / MIX</div>
-                <div class="spotify-container" data-uri="spotify:track:3nj9cRRWUHQddwl0ZCn3ri"></div>
-            </div>
-             <!-- Card 10 (Original 03 Reversed) -->
-             <div class="portfolio-card">
-                <div class="role-badge">REC / PROD / MIX</div>
-                <div class="spotify-container" data-uri="spotify:track:1yyuZv1L3tmi1QeEL4CBAR"></div>
-            </div>
-             <!-- Card 09 -->
+             
+             <!-- 12 (NEWEST) -->
              <div class="portfolio-card">
                 <div class="role-badge">REC / PROD / MIX / MAST</div>
-                <div class="spotify-container" data-uri="spotify:track:3EyPQypQd1HoScl517wyvC"></div>
+                <div class="spotify-container" data-uri="spotify:track:2FtlwcupNmhOJzRKnaMmGC"></div>
             </div>
-             <!-- Card 08 -->
-             <div class="portfolio-card">
-                <div class="role-badge">MIXED / MASTERED</div>
-                <div class="spotify-container" data-uri="spotify:track:6uZJGCqNAaIhfBmxH3Wus0"></div>
-            </div>
-            <!-- Card 07 -->
-            <div class="portfolio-card">
-                <div class="role-badge">REC / PROD / MIX / MAST</div>
-                <div class="spotify-container" data-uri="spotify:track:6yT7V6FwLbNMRE2mPGWNk5"></div>
-            </div>
-             <!-- Card 06 -->
-             <div class="portfolio-card">
-                <div class="role-badge">MIXED / MASTERED</div>
-                <div class="spotify-container" data-uri="spotify:track:09Zd2edvykjoOwkL8ETK4y"></div>
-            </div>
-             <!-- Card 05 -->
-             <div class="portfolio-card">
-                <div class="role-badge">REC / PROD / MIX / MAST</div>
-                <div class="spotify-container" data-uri="spotify:track:6Xobucdoxisw1a4qnSc7Jd"></div>
-            </div>
-            <!-- Card 04 -->
-            <div class="portfolio-card">
-                <div class="role-badge">REC / PROD / MIX / MAST</div>
-                <div class="spotify-container" data-uri="spotify:track:4z7XOSKpsk5ypNjyA9GzVD"></div>
-            </div>
-             <!-- Card 03 -->
-             <div class="portfolio-card">
-                <div class="role-badge">REC / PROD / MIX / MAST</div>
-                <div class="spotify-container" data-uri="spotify:track:77rCM2KRshJOYz2FYwl5Me"></div>
-            </div>
-            <!-- Card 02 -->
+
+             <!-- 11 -->
             <div class="portfolio-card">
                 <div class="role-badge">RECORDED / PRODUCED</div>
                 <div class="spotify-container" data-uri="spotify:track:1OwvKnQwYXVrbEp9lDVDa5"></div>
             </div>
-             <!-- Card 01 -->
+
+             <!-- 10 -->
              <div class="portfolio-card">
                 <div class="role-badge">REC / PROD / MIX / MAST</div>
-                <div class="spotify-container" data-uri="spotify:track:2FtlwcupNmhOJzRKnaMmGC"></div>
+                <div class="spotify-container" data-uri="spotify:track:77rCM2KRshJOYz2FYwl5Me"></div>
+            </div>
+             
+             <!-- 09 -->
+             <div class="portfolio-card">
+                <div class="role-badge">REC / PROD / MIX / MAST</div>
+                <div class="spotify-container" data-uri="spotify:track:4z7XOSKpsk5ypNjyA9GzVD"></div>
+            </div>
+
+             <!-- 08 -->
+             <div class="portfolio-card">
+                <div class="role-badge">REC / PROD / MIX / MAST</div>
+                <div class="spotify-container" data-uri="spotify:track:6Xobucdoxisw1a4qnSc7Jd"></div>
+            </div>
+
+             <!-- 07 -->
+             <div class="portfolio-card">
+                <div class="role-badge">MIXED / MASTERED</div>
+                <div class="spotify-container" data-uri="spotify:track:09Zd2edvykjoOwkL8ETK4y"></div>
+            </div>
+
+            <!-- 06 -->
+            <div class="portfolio-card">
+                <div class="role-badge">REC / PROD / MIX / MAST</div>
+                <div class="spotify-container" data-uri="spotify:track:6yT7V6FwLbNMRE2mPGWNk5"></div>
+            </div>
+             
+             <!-- 05 -->
+             <div class="portfolio-card">
+                <div class="role-badge">MIXED / MASTERED</div>
+                <div class="spotify-container" data-uri="spotify:track:6uZJGCqNAaIhfBmxH3Wus0"></div>
+            </div>
+
+            <!-- 04 -->
+             <div class="portfolio-card">
+                <div class="role-badge">REC / PROD / MIX / MAST</div>
+                <div class="spotify-container" data-uri="spotify:track:3EyPQypQd1HoScl517wyvC"></div>
+            </div>
+             
+             <!-- 03 -->
+             <div class="portfolio-card">
+                <div class="role-badge">REC / PROD / MIX</div>
+                <div class="spotify-container" data-uri="spotify:track:1yyuZv1L3tmi1QeEL4CBAR"></div>
+            </div>
+             
+             <!-- 02 -->
+             <div class="portfolio-card">
+                <div class="role-badge">REC / PROD / MIX</div>
+                <div class="spotify-container" data-uri="spotify:track:3nj9cRRWUHQddwl0ZCn3ri"></div>
+            </div>
+             
+             <!-- 01 (OLDEST) -->
+             <div class="portfolio-card">
+                <div class="role-badge">MIXED</div>
+                <div class="spotify-container" data-uri="spotify:track:2eYNfzBPp0ahVYHMNiP9yK"></div>
             </div>
         </div>
     </section>
 
     <section id="albums">
-        <div class="section-header"><span class="label">ALBUMS</span></div>
+        <div class="section-header">
+            <span class="label">ALBUMS</span>
+            <span style="color:var(--dim); font-size: 0.8rem;">//</span>
+        </div>
         <div class="portfolio-grid">
-            <div class="portfolio-card"><div class="spotify-container" data-uri="spotify:album:6sI8FzO0b309qOBB9Th666"></div></div>
-            <div class="portfolio-card"><div class="spotify-container" data-uri="spotify:album:1oWe42PR3MPfBCvcmKdVlE"></div></div>
-            <div class="portfolio-card"><div class="spotify-container" data-uri="spotify:album:5wm0z8Bzf7R7Dm6wucF2Ga"></div></div>
-            <div class="portfolio-card"><div class="spotify-container" data-uri="spotify:album:0aIeaByn3xmG4Z29gnC4yq"></div></div>
-            <div class="portfolio-card"><div class="spotify-container" data-uri="spotify:album:3OEMxa7rjq0nzjeVL20OKC"></div></div>
-            <div class="portfolio-card"><div class="spotify-container" data-uri="spotify:album:3zcTggVJIxrjmE8NdVJ5Ny"></div></div>
+            <!-- 07 (Newest) -->
             <div class="portfolio-card"><div class="spotify-container" data-uri="spotify:album:1VBHSI5yyx3ydEBMxkmC6M"></div></div>
+            <!-- 06 -->
+            <div class="portfolio-card"><div class="spotify-container" data-uri="spotify:album:3zcTggVJIxrjmE8NdVJ5Ny"></div></div>
+            <!-- 05 -->
+            <div class="portfolio-card"><div class="spotify-container" data-uri="spotify:album:3OEMxa7rjq0nzjeVL20OKC"></div></div>
+            <!-- 04 -->
+            <div class="portfolio-card"><div class="spotify-container" data-uri="spotify:album:0aIeaByn3xmG4Z29gnC4yq"></div></div>
+            <!-- 03 -->
+            <div class="portfolio-card"><div class="spotify-container" data-uri="spotify:album:5wm0z8Bzf7R7Dm6wucF2Ga"></div></div>
+            <!-- 02 -->
+            <div class="portfolio-card"><div class="spotify-container" data-uri="spotify:album:1oWe42PR3MPfBCvcmKdVlE"></div></div>
+            <!-- 01 (Oldest) -->
+            <div class="portfolio-card"><div class="spotify-container" data-uri="spotify:album:6sI8FzO0b309qOBB9Th666"></div></div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="section-header">
+            <span class="label">SERVICES</span>
+            <span style="color:var(--dim)">//</span>
+        </div>
+        <div class="services-grid">
+            <div class="service-cell">
+                <div class="service-num">01</div>
+                <h3>Mixing</h3>
+                <p>Balancing tracks for clarity, depth, and stereo width. Ensuring every element sits perfectly.</p>
+            </div>
+            <div class="service-cell">
+                <div class="service-num">02</div>
+                <h3>Mastering</h3>
+                <p>The final polish. Optimizing loudness and frequency balance for all streaming platforms and physical media.</p>
+            </div>
+            <div class="service-cell">
+                <div class="service-num">03</div>
+                <h3>Editing</h3>
+                <p>Precision time alignment and transparent pitch correction. Quantizing drums and tuning vocals to create a flawless foundation.</p>
+            </div>
+            <div class="service-cell">
+                <div class="service-num">04</div>
+                <h3>Post Production</h3>
+                <p>Audio repair, dialogue editing, and sound design for video, podcasts, and film projects.</p>
+            </div>
+            <div class="service-cell">
+                <div class="service-num">05</div>
+                <h3>Ghost Writing</h3>
+                <p>Composition and lyrical assistance tailored to your vision. Melodic hooks to full arrangements.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-header">
+            <span class="label">CONTACT FORM</span>
+            <span style="color:var(--dim)">//</span>
+        </div>
+        <div class="contact-area">
+            <div style="font-family:var(--font-head); font-size:2rem; line-height:1.2; color:var(--dim)">
+                READY TO<br><span style="color:var(--text)">UPGRADE YOUR SOUND?</span>
+            </div>
+            <div class="form-box">
+                <form action="https://formspree.io/f/xpwvrndn" method="POST">
+                    <input type="text" name="name" placeholder="NAME" required>
+                    <input type="email" name="email" placeholder="EMAIL" required>
+                    <textarea name="message" rows="4" placeholder="YOUR REQUEST" required></textarea>
+                    <button type="submit" class="submit-btn">SEND</button>
+                </form>
+            </div>
         </div>
     </section>
 </main>
@@ -197,7 +320,8 @@
                     if (uri && !container.hasAttribute('data-loaded')) {
                         container.setAttribute('data-loaded', 'true');
                         const isAlbum = uri.includes('album');
-                        const options = { uri: uri, width: '100%', height: isAlbum ? '352' : '152', theme: 'dark' };
+                        // Height 380 for albums, 160 for tracks
+                        const options = { uri: uri, width: '100%', height: isAlbum ? '380' : '160', theme: 'dark' };
                         IFrameAPI.createController(container, options, (controller) => {
                             controllers.push(controller);
                             controller.addListener('playback_update', e => {
